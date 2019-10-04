@@ -21,3 +21,6 @@ results = weatherdata['coord']#['lat']
 
 print results
 ###The data is called and returned 
+
+##Resources for Project output https://www.geeksforgeeks.org/python-find-current-weather-of-any-city-using-openweathermap-api/
+
