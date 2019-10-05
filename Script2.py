@@ -7,7 +7,7 @@ cityname = raw_input('Please input your City (Example: Worcester:)')
 apikey = 'dc97005f21d5744e0fdd1e405d09115b'
 
 
-url = 'https://api.openweathermap.org/data/2.5/weather/?q=%s&units=metric&appid=%s' % urlencode(cityname, apikey)
+url = 'https://api.openweathermap.org/data/2.5/weather/?q=%s&units=metric&appid=%s' % (cityname, apikey)
 #Example of complete URL https://api.openweathermap.org/data/2.5/weather/?q=Chicago&units=metric&appid=dc97005f21d5744e0fdd1e405d09115b
 #Validated at https://codebeautify.org/jsonviewer
 ##params = {'q':city_name,'appid': OWMAP_APIKEY}
