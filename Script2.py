@@ -35,6 +35,9 @@ if weatherdata["cod"] != "404":
     # store the value of "main" in variable y 
   y = weatherdata["main"] 
     #store value of "coord"
+   #add in statement regarding the weather	main "Rain"
+  if 
+
     
   coordinates = weatherdata["coord"]  
   current_latitude = coordinates["lat"]
@@ -59,6 +62,8 @@ if weatherdata["cod"] != "404":
   
     # store the value corresponding  to the "description" key at the 0th index of z 
   weather_description = z[0]["description"] 
+   #add in statement regarding the weather	main "Rain"
+  if 
   
   
     # print following values 
