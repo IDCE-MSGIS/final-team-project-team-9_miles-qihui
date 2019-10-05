@@ -34,7 +34,7 @@ class weather_function():
 
     # a function to print current Temperature (in Celsius)
     def current_temperature_C(self,weatherdata):
-        print(" Temperature (in Celsius):"+str(weatherdata["main"]["temp"] ) )
+        print('Temperature (in Celsius):'+str(weatherdata["main"]["temp"] ) )
         #suspends execution for the given number of seconds
         time.sleep(1)
         print("\nAll the imformation has shown!\n")
@@ -43,7 +43,7 @@ class weather_function():
     def current_temperature_F(self,weatherdata):
         t_c=weatherdata["main"]["temp"]
         t_f=t_c*1.6+32
-        print(" Temperature (in Fahrenheit):"+str(t_f ) )
+        print('Temperature (in Fahrenheit):'+str(t_f ) )
         #suspends execution for the given number of seconds
         time.sleep(1)
         print("\nAll the imformation has shown!\n")
