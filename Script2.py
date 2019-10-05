@@ -1,75 +1,117 @@
+#!/usr/bin/env python
+# _*_ coding:utf-8 _*_
 import requests
+import time
+import sys
 
-zipcode = raw_input('Please input your US zipcode (Example: 01610, US:)')
-#
-# OPENWEATHERMAP_API_KEY = os.environ.get('dc97005f21d5744e0fdd1e405d09115b')
+class weather_function():
+    # define a function to get the API response
+    def get_weatherdata(self):
+      # ask user to input a zipcode 
+      zipcode = raw_input('Please input your US zipcode (Example: 01610, US:)')
+      apikey = 'dc97005f21d5744e0fdd1e405d09115b'
+      url = 'https://api.openweathermap.org/data/2.5/weather/?q=%s&units=metric&appid=%s' % (zipcode, apikey)
+      #Example of complete URL https://api.openweathermap.org/data/2.5/weather/?q=01610&units=metric&appid=dc97005f21d5744e0fdd1e405d09115b
+      #Validated at https://codebeautify.org/jsonviewer
+      response = requests.get(url)
+      weatherdata = response.json()
+      ## weatherdata now contains list of nested dictionaries 
+      #JSON is a nested hierarchy file and in order to call the data you need to do a request.get and define your arguments
+      return weatherdata
+    # a function to print current humidity
+    def current_humidity(self,weatherdata):
+        print('humidity (in percentage): '+str(weatherdata["main"]["humidity"]) )
+        #suspends execution for the given number of seconds
+        time.sleep(1)
+        print("\nAll the imformation has shown!\n")
+        
+    # a function to print current pressure
+    def current_pressure(self,weatherdata):
+        print('atmospheric pressure (in hPa unit):'+str(weatherdata["main"]["pressure"]))
+        #suspends execution for the given number of seconds
+        time.sleep(1)
+        print("\nAll the imformation has shown! \n")
 
-apikey = 'dc97005f21d5744e0fdd1e405d09115b'
+    # a function to print current Temperature (in Celsius)
+    def current_temperature_C(self,weatherdata):
+        print(" Temperature (in Celsius):"+str(weatherdata["main"]["temp"] ) )
+        #suspends execution for the given number of seconds
+        time.sleep(1)
+        print("\nAll the imformation has shown!\n")
+
+    # a function to print current Temperature (in Fahrenheit)
+    def current_temperature_F(self,weatherdata):
+        t_c=weatherdata["main"]["temp"]
+        t_f=t_c*1.6+32
+        print(" Temperature (in Fahrenheit):"+str(t_f ) )
+        #suspends execution for the given number of seconds
+        time.sleep(1)
+        print("\nAll the imformation has shown!\n")
+
+    # a function to print weather description
+    def weather_description(self,weatherdata):
+        print('weather description:'+str(weatherdata["weather"][0]["description"]))
+        #suspends execution for the given number of seconds
+        time.sleep(1)
+        print("\nAll the imformation has shown!\n")
+        
+#create the menu 
+class Menu():
+    def __init__(self):
+        #Give an instance of the function
+        self.weather_function = weather_function()
+        self.choices = {
+            "1": self.weather_function.current_humidity,
+            "2": self.weather_function.current_pressure,
+            "3": self.weather_function.current_temperature_C,
+            "4": self.weather_function.current_temperature_F,
+            "5": self.weather_function.weather_description,
+            "6": self.quit
+        }
+    # display the menu to the user
+    def display_menu(self):
+        print("""
+Operation Menu:
+1. Current Humidity
+2. Current Pressure
+3. Current Temperature in Celsius
+4. Current Temperature in Fahrenheit
+5. Weather Description
+6. Quit
+""")
+
+    def run(self):
+        print('Welcome!\n')
+        weatherdata=self.weather_function.get_weatherdata()
+        #Exception handling
+        while True:
+            
+            if weatherdata['cod'] != 200:
+              print("Please input a valid zipcode!");continue
+            elif weatherdata["cod"] ==404:
+              print("City not found!");continue 
+
+            self.display_menu()
+            # get user input of menu choice 
+            try:
+                choice = input("Enter an option: ")
+            except Exception as e:
+                print("Please input a valid option!");
+                continue
+            #associate the user input with function
+            choice = str(choice).strip()
+            action = self.choices.get(choice)
+            if choice in {'1','2','3','4','5'}:
+                action(weatherdata)
+            elif choice=='6':
+                action()    
+            else:
+                print("{0} is not a valid choice".format(choice))
+    #define a function to quit the script
+    def quit(self):
+        print("\nThank you for using this script!\n")
+        sys.exit(0)
 
 
-url = 'https://api.openweathermap.org/data/2.5/weather/?q=%s&units=metric&appid=%s' % (zipcode, apikey)
-#Example of complete URL https://api.openweathermap.org/data/2.5/weather/?q=01610&units=metric&appid=dc97005f21d5744e0fdd1e405d09115b
-#Validated at https://codebeautify.org/jsonviewer
-##params = {'q':city_name,'appid': OWMAP_APIKEY}
-
-response = requests.get(url)
-weatherdata = response.json()
-
-## weatherdata now contains a list of nested dictionaries 
-#JSON is a nested hierarchy file and in order to call the data you need to do a request.get and define your arguments
-
-##coordinates = weatherdata['coord']
-
-#Example of JSON API call: 
-#{u'clouds': {u'all': 0}, u'name': u'Helsinki', u'visibility': 10000, u'sys': {u'country': u'FI', u'sunset': 1570376422, u'message': 0.0085, u'type': 1, u'id': 1332, u'sunrise':1570336616}, u'weather': [{u'main': u'Clear', u'id': 800, u'icon': u'01n', u'description': u'clear sky'}], u'coord': {u'lat': 60.25, u'lon': 24.87}, u'base': u'stations', u'timezone': 10800, u'dt': 1570311575, u'main': {u'pressure': 1020, u'temp_min': 0.56, u'temp_max': 2.78, u'temp': 1.92, u'humidity': 86},
-#u'id': 658226, u'wind': {u'speed': 2.6, u'deg': 310}, u'cod': 200}
-
-##print blank line
-print "" 
-
-
-#evaluate if the received "cod" key is not equal to "404", and if this evaluates to true, then the city has been located.
-#If the "cod" key == "404" that means that the city is not found, and the else statement below is evaluated. 
-if weatherdata["cod"] != "404": 
-  
-    # store the value of "main" in variable y 
-  y = weatherdata["main"] 
-    #store value of "coord"
-   #add in statement regarding the weather	main "Rain"
-  if 
-
-    
-  coordinates = weatherdata["coord"]  
-  current_latitude = coordinates["lat"]
-  current_latitude = coordinates["long"]
-  
-    # store the value of "temp" to the "temp" key of y 
-  current_temperature_celsius = y["temp"] 
-  #current_temperature_celsius integer conversion
-  #converting the celcius temperature to farenheit
-  temperature_farenheit = 9.0/5.0 * int(current_temperature_celsius) + 32
-  current_temperature_farenheit = str(temperature_farenheit)
-
-  
-    # store the value corresponding to the "pressure" key of y 
-  current_pressure = y["pressure"] 
-  
-    # store the value corresponding to the "humidity" key of y in "current_humidity"
-  current_humidity = y["humidity"] 
-  
-    # store the corresponding values of "weather" key from weatherdata  in variable z 
-  z = weatherdata["weather"] 
-  
-    # store the value corresponding  to the "description" key at the 0th index of z 
-  weather_description = z[0]["description"] 
-   #add in statement regarding the weather	main "Rain"
-  if 
-  
-  
-    # print following values 
-  print(" The current weather conditions for your zipcode of " + zipcode + ":\n")
-  print("_________________________________________\n")
-  print(" Temperature (in Celsius) = " + str(current_temperature_celsius) + "\n Temperature (in Farenheit) = " + current_temperature_farenheit +  "\n Atmospheric Pressure (in hPa unit) = " + str(current_pressure) + "\n Humidity (in percent) = " + str(current_humidity) + "\n Current Weather Description = " + str(weather_description)) 
-
-else: 
-  print(" City Not Found ") 
+if __name__ == '__main__':
+    Menu().run()
