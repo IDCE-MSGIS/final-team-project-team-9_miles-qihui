@@ -70,3 +70,30 @@ for i in weather_forecast:
 # Print list to remove unicode characters
 for day in forecast:
     print day
+    
+#method 2:
+'''
+
+new=''
+for i in weather_forecast:
+    i = i.text
+    count=0
+    while count<len(i):
+#isupper() can replaced by: ord(i[count])<=ord('Z') and ord(i[count])>=ord('A')
+#find whether two adjacent letters are one uppercase and another lowercase
+#if yes,add space in front of the uppercase letter
+      if i[count].isupper() and i[count-1].islower():
+        new=new+' '+i[count]
+      else:
+        new=new+i[count]
+      count=count+1
+
+    new=new.replace(' High',', High')
+    new=new.replace(' Low',', Low')
+ #change all characters to upperclass
+    new=new.upper()
+ 
+
+
+print(new)
+'''
