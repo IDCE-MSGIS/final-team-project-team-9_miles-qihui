@@ -36,17 +36,17 @@ page = requests.get(url)
 # Create a BeautifulSoup object with the response from the URL
 # Access contents of the web-page using .content
 # html_parser is used since our page is in HTML format
-soup=BeautifulSoup(page.content,"html.parser")
+# stores the parsed content in the BeautifulSoup object
+soup = BeautifulSoup(page.content,"html.parser")
 
 # Locate elements on page to be scraped
 # findAll() locates all occurrences of div tag with the given class name
-# stores it in the BeautifulSoup object
+# stores it in the variable weather_forecast
 weather_forecast = soup.findAll("li", {"class": "forecast-tombstone"})
 
-# Loop through the BeautifulSoup object to extract text text from every class instance using .text
+# Loop through the BeautifulSoup object to extract text from every class instance using .text
 # Store results in a list
-
-#method 1:
+#method 1 to retrieve the parsed text from beautiful soup object soup now stored in weather_forecast :
 for i in weather_forecast:
     i = i.text
 #preserve space between the words
@@ -58,7 +58,7 @@ for i in weather_forecast:
     i=i.replace('A',' A')
     i=i.replace('S',' S')
     i=i.replace('P',' P')
-    i=i.replace(' then',', then')
+    i=i.replace('then',', THEN')
     i=i.replace(' High',', High')
     i=i.replace(' Low',', Low')
     i=i.replace('\n\n ','\n\n')
@@ -67,7 +67,7 @@ for i in weather_forecast:
     i=i.upper()
     forecast.append(i)
     
-# Print list to remove unicode characters
+# Print list to remove unicode characters using element "day"
 for day in forecast:
     print day
     
