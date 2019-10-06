@@ -1,4 +1,4 @@
-## Final Project: Documentation of Script 1 and Script 2
+## Final Project: Script 1
 ### Web-scraping Weather Forecast Information with Python
 
 #### 1.Goal of the script: 
