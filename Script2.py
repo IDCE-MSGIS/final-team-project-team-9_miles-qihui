@@ -1,8 +1,16 @@
-# Completed Script 2 for Python Final Project. 
-# The script takes a user input of a zipcode and calls data from the OpenWeatherMap API.  
+# ASSIGNMENT: Completed Script 2 for Python Final Project. 
+# NAMES: Miles Van Denburg and Qiuhiu Wang
+# DATE: 10/6/19
+# CLASS: Intro to Python
+# INSTRUCTOR: Shadrock Roberts
+# TIME COMPLETED: 20 HOURS
+
+"""DESCRIPTION OF CODE###
+#The script takes a user input of a zipcode and calls data from the OpenWeatherMap API.  
 # The data is returned in a json file which is then passed and processed into various functions to be returned to the user.  
 # The user is presented with a menu of options 1-6 (1-5 for weather data, and 6 to quit) for the data which they would like to access for the entered zipcode. 
 # The data is returned to the user and they have the option of finding more data from the area or quitting the program. 
+"""
 
 #!/usr/bin/env python
 # _*_ coding:utf-8 _*_
