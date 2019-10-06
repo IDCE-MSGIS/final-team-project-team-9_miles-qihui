@@ -15,7 +15,7 @@ In the future, we have great possibilities to use similar scripts to crawl infor
 
 
 ## Final Project: Script 2
-### Your Chosen Assignment
+### Current Weather Data for User defined zipcode using Open Weather Map
 
 
 #### 1. Initial Goal of the script:
