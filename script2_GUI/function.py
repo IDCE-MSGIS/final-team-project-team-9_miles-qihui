@@ -1,3 +1,8 @@
+"""
+The GUI and its functions need to be runin Python 3.4 or higher as there is no support in Python2 
+for PyQT 5 and the packages that we need.
+"""
+
 import json
 import os
 import sys
