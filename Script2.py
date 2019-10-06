@@ -83,13 +83,23 @@ Operation Menu:
     def run(self):
         print('Welcome!\n')
         weatherdata=self.weather_function.get_weatherdata()
+        count=0
         #Exception handling
         while True:
             
             if weatherdata['cod'] != 200:
-              print("Please input a valid zipcode!");continue
+              print("Please input a valid zipcode!");
+              count=count+1
+              if count>0:
+                weatherdata=self.weather_function.get_weatherdata()
+              continue
+            
             elif weatherdata["cod"] ==404:
-              print("City not found!");continue 
+              print("City not found!");
+              count=count+1
+              if count>0:
+                weatherdata=self.weather_function.get_weatherdata()
+              continue 
 
             self.display_menu()
             # get user input of menu choice 
