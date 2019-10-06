@@ -19,28 +19,24 @@ In the future, we have great possibilities to use similar scripts to crawl infor
 
 #### 1. Initial Goal of the script: 
 
-In our script we wanted to take the previously completed webscraping lab and modify it so that the data would be called from a resource using an API key instead of by means of a web scraper-- which can be blocked by certain sites by disallowing their content from being scraped using dynamic content. The initial goal of our script was to give the user an accurate description of the weather conditions based on their input -- a US zipcode and return the fortecast for the day in an intuitive GUI format using the PyQT binding and the OpenWeatherMap Current Weather data API.
+In our script we wanted to take webscraping lab (Lab 5) and modify it so that the data would be called from a resource using an API key instead of by means of a web scraper-- which can be blocked by certain sites by disallowing their content from being scraped using dynamic content. The initial goal of our script was to give the user an accurate description of the weather conditions based on their input -- a US zipcode and return the fortecast for the day in an intuitive GUI format using the PyQT binding and the OpenWeatherMap Current Weather data API. 
 
 The “forecast” is defined as the following:
 --Current description of the weather outside;
 --Wind Speed;
 --Humidity; and
---Temperature.
+--Temperature (Celsius and Farenheit).
 
-Following the call and return of this data the script would give a recommendation for certain clothing items (E.g. umbrella for rain, boots & jacket for snow; windproof clothing for windy days.  Return temperature  based on preference for Celsius or Fahrenheit.
-
+Following the call and return of this data the script would give a recommendation for certain clothing items (E.g. umbrella for rain, boots & jacket for snow; windproof clothing for windy days. 
 
 #### 2.Method:
 We went about creating this script by first looking for similar projects which have attempted this goal.  We found in our research a C++/Python binding called PyQt which allows for the creation of GUIs using python code. We then set about examining how the binding works and what elements are involved in displaying the data in a GUI.  We found the resource Qt Creator which allows a user to build the GUI using a GUi and then specify how the elements in the GUI (i.e. the buttons and the output display) work by writing in supplementary code in combination with the PyQt generated code for the labels and display elements in the GUI--essentially post-hoc coding. Our plan was to then export this created GUI as a self-contained widget so that anyone could download it and use it without having to install packages. However, we quickly found the interface was prohibitive in creating the GUI without more knowledge of C++ and that the most recent PyQt packages do not funciton with Python 2.  In addition, the free version of the API we were using from https://openweathermap.org/current does not allow the user to call the forecast data without having a premium subscription and would only allow us to call the weather data instead. 
 
-Instead of the GUI, we then  oncentrated our efforsts on understandinghow to incorporate an API call into our code and extracting data from the resultant JSON file created as a result of the API call. We wanted to still produce options for the user 
+Instead of the GUI, we then concentrated our efforts on understanding how to incorporate an API call into our code and extracting data from the resultant JSON file created as a result of the API call. We wanted to still produce the above-stated outputs from our proposal for the user and make some form of interface for them to specify their desired data. We decided to create a "menu" from which the user can specify the data they would like to see.  We went about creating the proper URL for the API call in accordance with API documentation available on Open Weather Map (https://openweathermap.org/current). Once we were able to successfully create the URL we tested the resulting JSON file using https://codebeautify.org/jsonviewer . This site allowed us to look at the data being called and evaluate the nested dictionarries to identify the correct keys for the values (weather data) we diesired. We then made a first draft of the code which evaluated the input of the user --the zipcode and country code for the US-- and returned to them the desired outputs listed previously. Once we had a reliable version of the code that functioned when we ran it, we went about improving it by learning how to utilize classes, the self argument, and inheritance in order to simplify the code from innumerable if statements and loops. After modifying the script with class structures and creating a menu of weather data choices for the user to pick from, we were able to run our script with repeated success. In short, the new script Takes a user input of a zipcode and calls data from the OpenWeatherMap API. The data is returned in a json file which is then passed and processed into various functions to be returned to the user. The user is presented with a menu of options 1-6 (1-5 for weather data, and 6 to quit) for the data which they would like to access for the entered zipcode. The data is returned to the user and they have the option of finding more data from the area or quitting the program. 
+
 
 #### 3.Conclusion:
-In the future, we have great possibilities to use similar scripts to crawl information from the website. However, compared to the first way described in the front, the second way would be more extensive, and the applicability in different cases would be greater.
-
-
-The script which we pulled from 
-
+In the end we successfully built something which returns uptodate infomration to a user and provides them with the opportunity to continue to run said program. However, in the process fo creating something which worked we sacrificed the incorporation of the GUI and the recommendation for clothing to the users. In the future, we would like to be able to provide a self contained widget to the user for them to utilize without having to run the code through a compiler.  In addition we would like to make it so the user has the option of opting out of the intital selected city and input new cities for them to examine. In the meanitme though, we learned valuable lesons about time constraints, the process of API calls, JSON (Javascript Oriented Notation) files, creating classes and objects in python, and about the value of adapting to unforseen externalities such as data being locked behind paywalls and programming language limitations in implementations of newer libraries (Python 2 I'm looking at you).
 
 #### 4.Resources:
 For information on creating a GUI using PyQT5
