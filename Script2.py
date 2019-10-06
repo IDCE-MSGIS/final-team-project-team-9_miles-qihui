@@ -38,14 +38,14 @@ class weather_function():
         
     # a function to print current pressure using the data stored in weatherdata and object passed as self
     def current_pressure(self,weatherdata):
-        print('\nAtmospheric pressure (in hPa unit):'+str(weatherdata["main"]["pressure"]))
+        print('\nAtmospheric pressure (in hPa unit): '+str(weatherdata["main"]["pressure"]))
         #suspends execution for the given number of seconds
         time.sleep(1)
         print("\nWhoo Hoo! You got the information you wanted! \n")
 
     # a function to print current Temperature (in Celsius) using the data stored in weatherdata and object passed as self
     def current_temperature_C(self,weatherdata):
-        print('\nTemperature (in Celsius):'+str(weatherdata["main"]["temp"] ) )
+        print('\nTemperature (in Celsius): '+str(weatherdata["main"]["temp"] ) )
         #suspends execution for the given number of seconds
         time.sleep(1)
         print("\nWhoo Hoo! You got the information you wanted!\n")
@@ -54,14 +54,14 @@ class weather_function():
     def current_temperature_F(self,weatherdata):
         t_c=weatherdata["main"]["temp"]
         t_f=t_c*1.6+32
-        print('\nTemperature (in Fahrenheit):'+str(t_f ) )
+        print('\nTemperature (in Fahrenheit): '+str(t_f ) )
         #suspends execution for the given number of seconds
         time.sleep(1)
         print("\nWhoo Hoo! You got the information you wanted\n")
 
     # a function to print weather description using data stored as weatherdata and object passed as self
     def weather_description(self,weatherdata):
-        print('\nWeather description:'+str(weatherdata["weather"][0]["description"]))
+        print('\nWeather description: '+str(weatherdata["weather"][0]["description"]))
         #suspends execution for the given number of seconds
         time.sleep(1)
         print("\nWhoo Hoo! You got the information you wanted!\n")
