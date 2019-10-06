@@ -34,21 +34,21 @@ class weather_function():
         print('humidity (in percentage): '+str(weatherdata["main"]["humidity"]) )
         #suspends execution for the given number of seconds
         time.sleep(1)
-        print("\nAll the imformation has shown!\n")
+        print("\nWhoo Hoo! You got the information you wanted!\n")
         
     # a function to print current pressure using the data stored in weatherdata and object passed as self
     def current_pressure(self,weatherdata):
         print('atmospheric pressure (in hPa unit):'+str(weatherdata["main"]["pressure"]))
         #suspends execution for the given number of seconds
         time.sleep(1)
-        print("\nAll the imformation has shown! \n")
+        print("\nWhoo Hoo! You got the information you wanted! \n")
 
     # a function to print current Temperature (in Celsius) using the data stored in weatherdata and object passed as self
     def current_temperature_C(self,weatherdata):
         print('Temperature (in Celsius):'+str(weatherdata["main"]["temp"] ) )
         #suspends execution for the given number of seconds
         time.sleep(1)
-        print("\nAll the imformation has shown!\n")
+        print("\nWhoo Hoo! You got the information you wanted!\n")
 
     # a function to print current Temperature (in Fahrenheit) using the data stored in weatherdata and object passed as self
     def current_temperature_F(self,weatherdata):
@@ -57,14 +57,14 @@ class weather_function():
         print('Temperature (in Fahrenheit):'+str(t_f ) )
         #suspends execution for the given number of seconds
         time.sleep(1)
-        print("\nAll the imformation has shown!\n")
+        print("\nWhoo Hoo! You got the information you wanted\n")
 
     # a function to print weather description using data stored as weatherdata and object passed as self
     def weather_description(self,weatherdata):
         print('weather description:'+str(weatherdata["weather"][0]["description"]))
         #suspends execution for the given number of seconds
         time.sleep(1)
-        print("\nAll the imformation has shown!\n")
+        print("\nWhoo Hoo! You got the information you wanted!\n")
         
 #create the menu 
 class Menu():
